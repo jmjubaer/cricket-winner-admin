@@ -1,27 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.container{
+  @apply w-[1136px] mx-auto max-w-[96%]
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.primary_btn{
+  @apply px-5 py-[10px] bg-[#FFC305] rounded-md font-medium hover:bg-[#323232] text-[#323232] hover:text-white cursor-pointer
+}
+.primary_btn-rounded{
+  @apply px-5 py-[10px] bg-[#FFC305] rounded-3xl font-medium
+}
+.active{
+  @apply text-[#323232] border-b-2 border-[#FFC305] font-bold
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.link{
+  @apply py-5 block px-[10px] hover:text-[#323232] hover:border-b-2 transition-all duration-100 hover:border-[#FFC305] hover:font-bold
 }
