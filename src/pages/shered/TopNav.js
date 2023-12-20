@@ -10,25 +10,8 @@ import Image from "next/image";
 import Link from "next/link";
 const TopNav = () => {
     return (
-        <div className="bg-[#323232] p-5">
-            <nav className="container flex justify-center md:justify-between items-center">
-                <ul className="text-white hidden md:flex text-2xl gap-5">
-                    <li>
-                        <a target="_blank" href="">
-                            <FaFacebook />
-                        </a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="">
-                            <FaLinkedinIn />
-                        </a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="">
-                            <FaTwitter />
-                        </a>
-                    </li>
-                </ul>
+        <div className="bg-[#323232] sm:p-5">
+            <nav className="container flex justify-between items-center">
                 <div className="">
                     <Link href={"/"}>
                         <Image
@@ -39,6 +22,7 @@ const TopNav = () => {
                         />
                     </Link>
                 </div>
+                <h2 className="text-[#FFC305] text-3xl">Admin Panel</h2>
             </nav>
         </div>
     );

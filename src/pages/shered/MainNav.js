@@ -9,7 +9,7 @@ const MainNav = () => {
     const [control, setControl] = useState(false);
     // console.log(control);
     return (
-        <div className="shadow-lg">
+        <div className="shadow-lg z-20">
             <nav className="flex justify-between w-[1136px] mx-auto max-w-[96%] items-center relative">
                 <button
                     onClick={() => setControl(!control)}
@@ -22,9 +22,9 @@ const MainNav = () => {
                     )}
                 </button>
                 <div
-                    className={`absolute top-[50px] left-0 md:static md:h-auto md:w-auto overflow-hidden transition-all duration-500 z-50 ${
+                    className={`absolute top-[52px] -left-[2%] md:static md:h-auto md:w-auto overflow-hidden transition-all duration-500 z-50 ${
                         control
-                            ? "w-full bg-white md:bg-transparent h-[calc(100vh-100px)] text-white text-left"
+                            ? "w-[104%] bg-white md:bg-transparent h-[calc(100vh-100px)] text-white text-left"
                             : "w-0"
                     }`}
                 >
@@ -32,52 +32,67 @@ const MainNav = () => {
                         className={`flex-col flex md:flex-row text-[#969696] md:items-center gap-y-3 z-50`}
                     >
                         <li>
-                            <NavLink exact={true} activeClassName={"active"} className="link" href={"/"}>
-                                Home
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink  activeClassName={"active"} className="link" href={"/news"}>
-                                News
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink  activeClassName={"active"} className="link" href={"/prediction"}>
-                                Match Prediction
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink  activeClassName={"active"} className="link" href={"/fantasyTips"}>
-                                Fantasy tips
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink  activeClassName={"active"} className="link" href={"/leaderboard"}>
+                            <NavLink
+                                exact={true}
+                                activeClassName={"active"}
+                                className="link"
+                                href={"/"}
+                            >
                                 Leader Board
                             </NavLink>
                         </li>
                         <li>
-                            <button className="primary_btn-rounded items-center gap-1 md:hidden flex text-black mt-5">
-                                <GoArrowUpRight className=" text-3xl" />
-                                Be an expert
-                            </button>
+                            <NavLink
+                                activeClassName={"active"}
+                                className="link"
+                                href={"/brandlogo"}
+                            >
+                                Brand Logo
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                activeClassName={"active"}
+                                className="link"
+                                href={"/authimage"}
+                            >
+                                Auth Images
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                activeClassName={"active"}
+                                className="link"
+                                href={"/players"}
+                            >
+                                Player
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                activeClassName={"active"}
+                                className="link"
+                                href={"/ads"}
+                            >
+                                Ads Management
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                activeClassName={"active"}
+                                className="link"
+                                href={"/tweet"}
+                            >
+                                Tweet
+                            </NavLink>
                         </li>
                     </ul>
                 </div>
-                <div className="flex gap-3 items-center">
-                    <button className="flex items-center justify-center w-11 h-11 text-xl border border-[#F5F5F5] rounded-full ">
-                        <FaMagnifyingGlass />
-                    </button>
-                    <Link href={"/login"} className="px-5 p-3 border border-[#F5F5F5] rounded-3xl">
-                        <FaUser className="inline mr-2" />
-                        Login
-                    </Link>
-                    <button className="primary_btn-rounded items-center gap-1 md:flex hidden">
-                        <GoArrowUpRight className=" text-3xl" />
-                        Be an expert
-                    </button>
-                    <button className="lg:block hidden">
-                        <FaBars className=" text-3xl" />
+                <div className="flex gap-3 items-center my-2">
+                    <button className=" border-2 border-[#FFC305] rounded-3xl overflow-hidden">
+                        <span className="bg-[#FFC305] font-black rounded-3xl m-2 inline-block px-3 ">
+                            Log Out
+                        </span>
                     </button>
                 </div>
             </nav>

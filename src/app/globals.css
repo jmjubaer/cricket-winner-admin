@@ -18,3 +18,30 @@
 .link{
   @apply py-5 block px-[10px] hover:text-[#323232] hover:border-b-2 transition-all duration-100 hover:border-[#FFC305] hover:font-bold
 }
+
+
+/* ===================== tab css ===================== */
+.rounded_left{
+  border-bottom-left-radius: 500px !important;
+  border-top-left-radius: 500px !important;
+}
+.rounded_right{
+  border-bottom-right-radius: 500px !important;
+  border-top-right-radius: 500px !important;
+}
+.content_tab .react-tabs__tab--selected{
+  @apply bg-[#FFC305] rounded-none
+}
+.content_tab>:hover {
+  @apply bg-[#FFC305] rounded-none
+}
+
+
+.customClass{
+  background: #14A1FE;
+  border-radius: 50px;
+  overflow: hidden;
+}
+.customClass > div{
+  border-radius: 0px !important;
+}
