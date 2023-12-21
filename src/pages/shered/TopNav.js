@@ -22,7 +22,7 @@ const TopNav = () => {
                         />
                     </Link>
                 </div>
-                <h2 className="text-[#FFC305] text-3xl">Admin Panel</h2>
+                <h2 className="text-[#FFC305] text-2xl sm:text-3xl">Admin Panel</h2>
             </nav>
         </div>
     );

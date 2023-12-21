@@ -32,16 +32,14 @@ const AuthImagePage = () => {
         const reader = new FileReader();
         const file = watch("image")[0];
         if (file) {
-            if (/^image\//.test(file.type)) {
-                reader.onloadend = () => {
-                    setSelectedImage(reader.result);
-                };
-                reader?.readAsDataURL(file);
-            }
+            reader.onloadend = () => {
+                setSelectedImage(reader.result);
+            };
+            reader?.readAsDataURL(file);
         }
     }
     return (
-        <div>
+        <section>
             <VectorBg>
                 <h2 className="container my-16 font-bold text-3xl sm:text-5xl text-white text-center">
                     Login and Sing up page banner control
@@ -171,7 +169,7 @@ const AuthImagePage = () => {
                     </TabPanel>
                 </Tabs>
             </div>
-        </div>
+        </section>
     );
 };
 
