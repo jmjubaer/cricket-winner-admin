@@ -8,6 +8,9 @@
 .primary_btn{
   @apply px-5 py-[10px] bg-[#FFC305] rounded-md font-medium hover:bg-[#323232] text-[#323232] hover:text-white cursor-pointer
 }
+.primary_btn-small{
+  @apply px-5 bg-[#FFC305] rounded-md font-medium hover:bg-[#323232] text-[#323232] hover:text-white cursor-pointer
+}
 .primary_btn-rounded{
   @apply px-5 py-[10px] bg-[#FFC305] rounded-3xl font-medium
 }

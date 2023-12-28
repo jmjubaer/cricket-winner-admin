@@ -86,6 +86,24 @@ const MainNav = () => {
                                 Tweet
                             </NavLink>
                         </li>
+                        <li>
+                            <NavLink
+                                activeClassName={"active"}
+                                className="link"
+                                href={"/webstory"}
+                            >
+                                Web Stories
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                activeClassName={"active"}
+                                className="link"
+                                href={"/blogs"}
+                            >
+                                Blogs
+                            </NavLink>
+                        </li>
                     </ul>
                 </div>
                 <div className="flex gap-3 items-center my-2">

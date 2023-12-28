@@ -26,7 +26,7 @@ const TweetPage = () => {
                         Tweet text :
                     </label>
                     <input
-                        {...register("url", {
+                        {...register("tweetText", {
                             required: true,
                         })}
                         type="text"
@@ -41,7 +41,7 @@ const TweetPage = () => {
                         Tweet short Description :
                     </label>
                     <input
-                        {...register("url", {
+                        {...register("tweetDes", {
                             required: true,
                         })}
                         type="text"
@@ -56,7 +56,7 @@ const TweetPage = () => {
                         Tweet Link :
                     </label>
                     <input
-                        {...register("url", {
+                        {...register("TweetUrl", {
                             required: true,
                         })}
                         type="url"
