@@ -13,7 +13,7 @@ const MainNav = () => {
             <nav className="flex justify-between w-[1136px] mx-auto max-w-[96%] items-center relative">
                 <button
                     onClick={() => setControl(!control)}
-                    className="block md:hidden text-[#323232] cursor-pointer"
+                    className="block lg:hidden text-[#323232] cursor-pointer"
                 >
                     {control ? (
                         <FaTimes className="text-3xl" />
@@ -22,14 +22,14 @@ const MainNav = () => {
                     )}
                 </button>
                 <div
-                    className={`absolute top-[52px] -left-[2%] md:static md:h-auto md:w-auto overflow-hidden transition-all duration-500 z-50 ${
+                    className={`absolute top-[52px] -left-[2%] lg:static lg:h-auto lg:w-auto overflow-hidden transition-all duration-500 z-50 ${
                         control
-                            ? "w-[104%] bg-white md:bg-transparent h-[calc(100vh-100px)] text-white text-left"
+                            ? "w-[104%] bg-white lg:bg-transparent h-[calc(100vh-100px)] text-white text-left"
                             : "w-0"
                     }`}
                 >
                     <ul
-                        className={`flex-col flex md:flex-row text-[#969696] md:items-center gap-y-3 z-50`}
+                        className={`flex-col flex lg:flex-row text-[#969696] lg:items-center gap-y-3 z-50`}
                     >
                         <li>
                             <NavLink

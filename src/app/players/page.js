@@ -152,6 +152,7 @@ const PlayerPage = () => {
     const handleChangeRole = (data) => {
         console.log(data);
     };
+
     // Todo: add pagination fn
     const handlePagination = (e) => {};
     return (
@@ -162,7 +163,7 @@ const PlayerPage = () => {
                 </h2>
             </VectorBg>
             <div className="w-[98%] max-w-[1440px] mx-auto py-10">
-                <div className="flex justify-between items-center">
+                <div className="flex flex-wrap gap-5 justify-center sm:justify-between items-center">
                     <button className="primary_btn w-40">Add User</button>
                     <form
                         onSubmit={handleSubmit(handleSearchUser)}
@@ -179,7 +180,7 @@ const PlayerPage = () => {
                         />
                     </form>
                 </div>
-                <div className="my-5 flex flex-wrap gap-2 items-center justify-between">
+                <div className="my-5 flex flex-wrap gap-2 items-center lg:justify-between justify-center">
                     <Select
                         value={filter}
                         onChange={handleFilter}
@@ -240,10 +241,10 @@ const PlayerPage = () => {
                         <input
                             type="submit"
                             value="Change"
-                            className="px-4 py-1 bg-[#FFC305] font-medium hover:bg-[#323232] text-[#323232] hover:text-white cursor-pointer"
+                            className="px-4 py-2 bg-[#FFC305] font-medium hover:bg-[#323232] text-[#323232] hover:text-white cursor-pointer"
                         />
                     </form>
-                    {/* <div className=" flex gap-2"> */}
+
                     <button className="primary_btn-small py-2 text-sm flex items-center gap-1 ">
                         <MdLockReset className="text-2xl" />
                         Reset Password
@@ -256,84 +257,92 @@ const PlayerPage = () => {
                         <FaBan className="text-base" />
                         Ban
                     </button>
-                    {/* </div> */}
-                    <div className="flex w-fit justify-between gap-1 items-center">
-                        <button className="bg-slate-300 p-2">
-                            <FaAngleDoubleLeft />
-                        </button>
-                        <button className="bg-slate-300 p-2 mx-1">
-                            <FaAngleLeft />
-                        </button>
-                        {/* Todo: dynamic page quantity */}
-                        <input
-                            type="text"
-                            onChange={handlePagination}
-                            className="w-16 outline-none border-2 px-2 py-1 text-center"
-                            value={1}
-                        />
-                        <p>of {"20"}</p>
-                        <button className="bg-slate-300 p-2 mx-1">
-                            <FaAngleRight />
-                        </button>
-                        <button className="bg-slate-300 p-2">
-                            <FaAngleDoubleRight />
-                        </button>
+                    {/* Pagination */}
+                    <div className="w-full lg:w-fit mx-auto">
+                        <div className="flex w-fit mx-auto justify-between gap-1 items-center">
+                            <button className="bg-slate-300 p-2">
+                                <FaAngleDoubleLeft />
+                            </button>
+                            <button className="bg-slate-300 p-2 mx-1">
+                                <FaAngleLeft />
+                            </button>
+                            {/* Todo: dynamic page quantity */}
+                            <input
+                                type="text"
+                                onChange={handlePagination}
+                                className="w-16 outline-none border-2 px-2 py-1 text-center"
+                                value={1}
+                            />
+                            <p>of {"20"}</p>
+                            <button className="bg-slate-300 p-2 mx-1">
+                                <FaAngleRight />
+                            </button>
+                            <button className="bg-slate-300 p-2">
+                                <FaAngleDoubleRight />
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <table className="w-full min-w-[600px] border-2 ">
-                    {/* head */}
-                    <thead className="">
-                        <tr className="font-medium my-3 text-[#969696] bg-[#EAECF0]">
-                            <th className="font-medium py-3 px-5 flex items-center gap-3">
-                                <input
-                                    type="checkbox"
-                                    name=""
-                                    id=""
-                                    className="w-5 h-5 cursor-pointer"
-                                />
-                                <h5 className="">Username</h5>
-                            </th>
-                            <th className="font-medium py-3 text-left">Name</th>
-                            <th className="font-medium py-3 text-left">
-                                Email
-                            </th>
-                            <th className="font-medium py-3 text-left">Role</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {/*Todo: Change Dynamic data */}
-                        {usersInfo?.map((user, idx) => (
-                            <tr
-                                key={idx}
-                                className="even:bg-[#EAECF0] bg-white"
-                            >
-                                <td className="flex items-center gap-5 px-5 py-2">
+                <div className="overflow-auto w-full">
+                    <table className="w-full min-w-[700px] border-2 ">
+                        {/* head */}
+                        <thead className="">
+                            <tr className="font-medium my-3 text-[#969696] bg-[#EAECF0]">
+                                <th className="font-medium py-3 px-5 flex items-center gap-3">
                                     <input
                                         type="checkbox"
                                         name=""
                                         id=""
                                         className="w-5 h-5 cursor-pointer"
                                     />
-                                    <div className="flex items-center gap-3">
-                                        <Image
-                                            width={50}
-                                            height={50}
-                                            className="w-[50px] h-[50px] object-cover rounded-full border"
-                                            src={user?.image}
-                                            alt="User Image"
-                                        />
-                                        <p className="font-medium">
-                                            {user?.username}
-                                        </p>
-                                    </div>
-                                </td>
-                                <td className="">{user?.name}</td>
-                                <td className="py-4">{user?.email}</td>
-                                <td className="py-4">{user?.role}</td>
+                                    <h5 className="">Username</h5>
+                                </th>
+                                <th className="font-medium py-3 text-left">
+                                    Name
+                                </th>
+                                <th className="font-medium py-3 text-left">
+                                    Email
+                                </th>
+                                <th className="font-medium py-3 text-left">
+                                    Role
+                                </th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {/*Todo: Change Dynamic data */}
+                            {usersInfo?.map((user, idx) => (
+                                <tr
+                                    key={idx}
+                                    className="even:bg-[#EAECF0] bg-white"
+                                >
+                                    <td className="flex items-center gap-5 px-5 py-2">
+                                        <input
+                                            type="checkbox"
+                                            name=""
+                                            id=""
+                                            className="w-5 h-5 cursor-pointer"
+                                        />
+                                        <div className="flex items-center gap-3">
+                                            <Image
+                                                width={50}
+                                                height={50}
+                                                className="w-[50px] h-[50px] object-cover rounded-full border"
+                                                src={user?.image}
+                                                alt="User Image"
+                                            />
+                                            <p className="font-medium">
+                                                {user?.username}
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <td className="">{user?.name}</td>
+                                    <td className="py-4">{user?.email}</td>
+                                    <td className="py-4">{user?.role}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </>
     );
