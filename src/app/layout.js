@@ -18,18 +18,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            <body className={onest.className}>
-                    <header>
-                        <TopNav></TopNav>
-                        <MainNav></MainNav>
-                    </header>
-                    <main className="bg-[#FBFBFB] min-h-[calc(100vh-150px)] relative">
-                        {children}
-                    </main>
-                    <footer className="bg-black text-white">
-                        <Footer></Footer>
-                    </footer>
-            </body>
+            <body className={onest.className}>{children}</body>
         </html>
     );
 }

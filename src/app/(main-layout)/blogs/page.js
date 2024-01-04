@@ -10,43 +10,15 @@ import { RiSearchEyeLine } from "react-icons/ri";
 import Select from "react-select";
 import "react-tooltip/dist/react-tooltip.css";
 import { Tooltip } from "react-tooltip";
+import Link from "next/link";
 const BlogsPage = () => {
-    const [filter, setFilter] = useState("All");
+    const [category, setCategory] = useState("All");
+    const [date, setDate] = useState("All");
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
-    const option = [
-        {
-            value: "Cricket Analysis",
-            label: "Cricket Analysis",
-        },
-        {
-            value: "Cricket News",
-            label: "Cricket News",
-        },
-        {
-            value: "Cricket Stats",
-            label: "Cricket Stats",
-        },
-        {
-            value: "Fantasy cricket tips",
-            label: "Fantasy cricket tips",
-        },
-        {
-            value: "Match Preview",
-            label: "Match Preview",
-        },
-        {
-            value: "Today cricket match prediction",
-            label: "Today cricket match prediction",
-        },
-        {
-            value: "Uncategories",
-            label: "Uncategories",
-        },
-    ];
     const blogs = [
         {
             id: 1,
@@ -170,11 +142,11 @@ const BlogsPage = () => {
         },
     ];
     const handleCategoryFilter = ({ value }) => {
-        setFilter();
+        setCategory();
         console.log(value);
     };
     const handleDateFilter = ({ value }) => {
-        setFilter();
+        setDate();
         console.log(value);
     };
     const handleSearchUser = ({ value }) => {
@@ -193,7 +165,7 @@ const BlogsPage = () => {
             </VectorBg>
             <div className="w-[98%] max-w-[1440px] mx-auto py-10">
                 <div className="flex flex-wrap gap-5 justify-center sm:justify-between items-center">
-                    <button className="primary_btn w-40">Add Blog</button>
+                    <Link href={"/addblog"} className="primary_btn text-center w-40">Add Blog</Link>
                     <form
                         onSubmit={handleSubmit(handleSearchUser)}
                         className="border rounded-lg overflow-hidden flex"
@@ -211,7 +183,7 @@ const BlogsPage = () => {
                 </div>
                 <div className="my-5 flex flex-wrap gap-2 items-center lg:justify-between justify-center">
                     <Select
-                        value={filter}
+                        value={date}
                         onChange={handleDateFilter}
                         // Todo: pass dynamic data
                         options={[
@@ -224,55 +196,99 @@ const BlogsPage = () => {
                                 label: `${moment().format("MMMM YYYY")}`,
                             },
                             {
-                                value: `${moment().subtract(1, 'months').format()}`,
-                                label: `${moment().subtract(1, 'months').format("MMMM YYYY")}`,
+                                value: `${moment()
+                                    .subtract(1, "months")
+                                    .format()}`,
+                                label: `${moment()
+                                    .subtract(1, "months")
+                                    .format("MMMM YYYY")}`,
                             },
                             {
-                                value: `${moment().subtract(2, 'months').format()}`,
-                                label: `${moment().subtract(2, 'months').format("MMMM YYYY")}`,
+                                value: `${moment()
+                                    .subtract(2, "months")
+                                    .format()}`,
+                                label: `${moment()
+                                    .subtract(2, "months")
+                                    .format("MMMM YYYY")}`,
                             },
                             {
-                                value: `${moment().subtract(3, 'months').format()}`,
-                                label: `${moment().subtract(3, 'months').format("MMMM YYYY")}`,
+                                value: `${moment()
+                                    .subtract(3, "months")
+                                    .format()}`,
+                                label: `${moment()
+                                    .subtract(3, "months")
+                                    .format("MMMM YYYY")}`,
                             },
                             {
-                                value: `${moment().subtract(4, 'months').format()}`,
-                                label: `${moment().subtract(4, 'months').format("MMMM YYYY")}`,
+                                value: `${moment()
+                                    .subtract(4, "months")
+                                    .format()}`,
+                                label: `${moment()
+                                    .subtract(4, "months")
+                                    .format("MMMM YYYY")}`,
                             },
                             {
-                                value: `${moment().subtract(5, 'months').format()}`,
-                                label: `${moment().subtract(5, 'months').format("MMMM YYYY")}`,
+                                value: `${moment()
+                                    .subtract(5, "months")
+                                    .format()}`,
+                                label: `${moment()
+                                    .subtract(5, "months")
+                                    .format("MMMM YYYY")}`,
                             },
                             {
-                                value: `${moment().subtract(6, 'months').format()}`,
-                                label: `${moment().subtract(6, 'months').format("MMMM YYYY")}`,
+                                value: `${moment()
+                                    .subtract(6, "months")
+                                    .format()}`,
+                                label: `${moment()
+                                    .subtract(6, "months")
+                                    .format("MMMM YYYY")}`,
                             },
                             {
-                                value: `${moment().subtract(7, 'months').format()}`,
-                                label: `${moment().subtract(7, 'months').format("MMMM YYYY")}`,
+                                value: `${moment()
+                                    .subtract(7, "months")
+                                    .format()}`,
+                                label: `${moment()
+                                    .subtract(7, "months")
+                                    .format("MMMM YYYY")}`,
                             },
                             {
-                                value: `${moment().subtract(8, 'months').format()}`,
-                                label: `${moment().subtract(8, 'months').format("MMMM YYYY")}`,
+                                value: `${moment()
+                                    .subtract(8, "months")
+                                    .format()}`,
+                                label: `${moment()
+                                    .subtract(8, "months")
+                                    .format("MMMM YYYY")}`,
                             },
                             {
-                                value: `${moment().subtract(9, 'months').format()}`,
-                                label: `${moment().subtract(9, 'months').format("MMMM YYYY")}`,
+                                value: `${moment()
+                                    .subtract(9, "months")
+                                    .format()}`,
+                                label: `${moment()
+                                    .subtract(9, "months")
+                                    .format("MMMM YYYY")}`,
                             },
                             {
-                                value: `${moment().subtract(10, 'months').format()}`,
-                                label: `${moment().subtract(10, 'months').format("MMMM YYYY")}`,
+                                value: `${moment()
+                                    .subtract(10, "months")
+                                    .format()}`,
+                                label: `${moment()
+                                    .subtract(10, "months")
+                                    .format("MMMM YYYY")}`,
                             },
                             {
-                                value: `${moment().subtract(11, 'months').format()}`,
-                                label: `${moment().subtract(11, 'months').format("MMMM YYYY")}`,
+                                value: `${moment()
+                                    .subtract(11, "months")
+                                    .format()}`,
+                                label: `${moment()
+                                    .subtract(11, "months")
+                                    .format("MMMM YYYY")}`,
                             },
                         ]}
                         placeholder={`All Dates`}
                         className="w-[200px] outline-none "
                     />{" "}
                     <Select
-                        value={filter}
+                        value={category}
                         onChange={handleCategoryFilter}
                         // Todo: pass dynamic data
                         options={[
@@ -310,7 +326,7 @@ const BlogsPage = () => {
                             },
                         ]}
                         placeholder={`All Categories`}
-                        className="w-[200px] outline-none "
+                        className="w-[300px] outline-none "
                     />
                     <button className="primary_btn-small py-2 text-sm flex items-center gap-1 ">
                         <RiSearchEyeLine className="text-2xl" />
@@ -392,14 +408,15 @@ const BlogsPage = () => {
                                             id=""
                                             className="w-5 h-5 cursor-pointer"
                                         />
-                                        <p
-                                            className="font-medium text-ellipsis w-80 whitespace-nowrap overflow-hidden"
+                                        <Link
+                                            href={"/"}
+                                            className="font-medium text-ellipsis w-80 whitespace-nowrap overflow-hidden hover:text-blue-500 hover:underline"
                                             title={blog?.title}
                                             data-tooltip-id="title"
                                             data-tooltip-content={blog?.title}
                                         >
                                             {blog?.title}
-                                        </p>
+                                        </Link>
                                     </td>
                                     <td className="">{blog?.author?.name}</td>
                                     <td className="py-4">{blog?.category}</td>
