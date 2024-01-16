@@ -38,6 +38,44 @@
 .content_tab>:hover {
   @apply bg-[#FFC305] rounded-none
 }
+.blog_tab .react-tabs__tab--selected{
+  @apply border-b-2 border-[#FFC305] rounded-none
+}
+.blog_tab>:hover {
+  @apply text-blue-500 rounded-none
+}
+
+
+.accordion {
+  border: none !important;
+  border-bottom: 1px solid #e5e7eb !important;
+  border-radius: 0 !important;
+}
+.accordion__button{
+  font-size: 14px !important;
+  padding: 13px !important; 
+  padding-right: 30px !important;
+  background-color: transparent !important;
+}
+.accordion__button:hover{
+  background-color: #f4f4f4 !important;
+}
+
+.accordion__heading{
+  position: relative;
+}
+.accordion__button:before {
+  top: 40% !important;
+  position: absolute;
+  right: 5px;
+}
+.accordion__panel{
+  padding: 10px !important;
+
+}
+
+
+
 
 
 .customClass{

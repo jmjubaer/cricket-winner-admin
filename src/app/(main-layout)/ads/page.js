@@ -1,17 +1,10 @@
 "use client";
 import VectorBg from "@/components/VectorBg";
 import React, { useState } from "react";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import "react-tabs/style/react-tabs.css";
-import { MdLogin } from "react-icons/md";
-import { ImUserPlus } from "react-icons/im";
+
 import Image from "next/image";
-import loginImage from "@/assets/loing-page.png";
-import signUpImage from "@/assets/sign_up.png";
 import { LuImagePlus } from "react-icons/lu";
-import { IoIosSave } from "react-icons/io";
 import { useForm } from "react-hook-form";
-import { FaEdit } from "react-icons/fa";
 import { BsArrows, BsArrowsVertical } from "react-icons/bs";
 const AdManagementPage = () => {
     const {
