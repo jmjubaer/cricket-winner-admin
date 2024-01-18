@@ -169,15 +169,30 @@ const AddBlogPage = () => {
         // Handle form submission with data including the image
         console.log(data);
     };
+
+    // SettingTab Function=============
+
+    const [tags, setTags] = useState([]);
+
     const handleSummery = (data) => {
-        console.log(data)
-    }
+        console.log(data);
+    };
     const handleCategory = (data) => {
-        console.log(data)
-    }
+        console.log(data);
+    };
+
+    const handleFeaturedImage = (data) => {
+        console.log(data);
+    };
     const handleToolSearch = (e) => {
         console.log(e.target.value);
     };
+    const all = () =>{
+        handleFeaturedImage()
+        handleCategory()
+        handleSummery()
+        console.log(tags);
+    }
     return (
         <section className="max-w-[1440px] mx-auto">
             <nav className="flex bg-white justify-between items-center border-b border fixed top-0  w-full">
@@ -1085,11 +1100,18 @@ const AddBlogPage = () => {
                         className="text-lg placeholder:text-slate-600 outline-none my-5"
                         placeholder="Type / to choose a block"
                     />
+                    <button onClick={all} type="submit" className="primary_btn">alll</button>
                 </form>
                 {/* Setting Drawer */}
                 {settingDrawer && (
-                    <div className="border-l col-span-2">
-                        <SettingTab handleSummery={handleSummery} handleCategory={handleCategory}></SettingTab>
+                    <div className="border-l col-span-2 ">
+                        <SettingTab
+                            handleSummery={handleSummery}
+                            handleCategory={handleCategory}
+                            selected={tags}
+                            setSelected={setTags}
+                            handleFeaturedImage={handleFeaturedImage}
+                        ></SettingTab>
                     </div>
                 )}
             </div>

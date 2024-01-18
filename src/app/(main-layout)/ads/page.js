@@ -1,7 +1,8 @@
 "use client";
 import VectorBg from "@/components/VectorBg";
 import React, { useState } from "react";
-
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
 import Image from "next/image";
 import { LuImagePlus } from "react-icons/lu";
 import { useForm } from "react-hook-form";

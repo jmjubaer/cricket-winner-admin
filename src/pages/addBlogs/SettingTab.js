@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { useForm } from "react-hook-form";
@@ -10,15 +10,27 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from "react-accessible-accordion";
-
-// Demo styles, see 'Styles' section below for some notes on use.
 import "react-accessible-accordion/dist/fancy-example.css";
-const SettingTab = ({ handleSummery, handleCategory }) => {
+import { TagsInput } from "react-tag-input-component";
+import { IoIosSave } from "react-icons/io";
+import Image from "next/image";
+import { FaEdit } from "react-icons/fa";
+const SettingTab = ({
+    handleSummery,
+    handleCategory,
+    selected,
+    setSelected,
+    handleFeaturedImage,
+}) => {
     const {
+        watch,
         register,
+        setValue,
         handleSubmit,
         formState: { errors },
     } = useForm();
+
+    // Todo data=============
     const options = [
         { value: "Test User1", label: "Test User1" },
         { value: "Test User2", label: "Test User2" },
@@ -63,6 +75,42 @@ const SettingTab = ({ handleSummery, handleCategory }) => {
             id: 7,
         },
     ];
+    const mostUsedTags = [
+        "Match Prediction",
+        "DREAM 11 PREDICTION",
+        "Fantasy cricket tips",
+        "IPL 2023India",
+        "Virat Kohli",
+        "T20 World Cup 2022",
+        "Rohit Sharma",
+        "IND vs AUS",
+        "BBL 2022",
+    ];
+
+    const handleTag = (tag) => {
+        const isAvailable = selected.find((item) => item == tag);
+        if (!isAvailable) {
+            setSelected([...selected, tag]);
+        }
+        console.log(isAvailable);
+    };
+    const [selectedImage, setSelectedImage] = useState(null);
+
+    if (watch("image")) {
+        const reader = new FileReader();
+        const file = watch("image")[0];
+        if (file) {
+            reader.onloadend = () => {
+                setSelectedImage(reader.result);
+            };
+            reader?.readAsDataURL(file);
+        }
+    }
+
+    const handleRemoveImage = () => {
+        setSelectedImage(null);
+        setValue("image", "");
+    };
     return (
         <Tabs>
             <div className="flex">
@@ -78,8 +126,12 @@ const SettingTab = ({ handleSummery, handleCategory }) => {
 
             {/*=============== Horizontal ad Tab ================ */}
             <TabPanel className="">
-                <div className=" h-[calc(100vh-175px)] overflow-auto">
-                    <Accordion preExpanded={["a"]} allowZeroExpanded>
+                <div className=" h-[calc(100vh-110px)] overflow-auto">
+                    <Accordion
+                        preExpanded={["a", "b", "c", "d"]}
+                        allowZeroExpanded
+                        allowMultipleExpanded
+                    >
                         <AccordionItem uuid="a">
                             <AccordionItemHeading>
                                 <AccordionItemButton>
@@ -195,7 +247,7 @@ const SettingTab = ({ handleSummery, handleCategory }) => {
                                         ({ value, label, id }, idx) => (
                                             <div
                                                 key={id}
-                                                className="flex gap-3 my-5 items-center"
+                                                className="flex gap-3 my-3 items-center"
                                             >
                                                 <input
                                                     type="checkbox"
@@ -214,6 +266,97 @@ const SettingTab = ({ handleSummery, handleCategory }) => {
                                             </div>
                                         )
                                     )}
+                                    <div className="">
+                                        <button className="text-sm text-blue-500 underline">
+                                            Add New Category
+                                        </button>
+                                    </div>
+                                </form>
+                            </AccordionItemPanel>
+                        </AccordionItem>
+                        <AccordionItem uuid="c">
+                            <AccordionItemHeading>
+                                <AccordionItemButton>Tags</AccordionItemButton>
+                            </AccordionItemHeading>
+                            <AccordionItemPanel>
+                                <h3 className="uppercase text-xs font-medium mb-3">
+                                    ADD NEW TAG
+                                </h3>
+                                <TagsInput
+                                    value={selected}
+                                    onChange={setSelected}
+                                    name="tags"
+                                    placeHolder="Enter new tags"
+                                />
+                                <span className="text-xs">
+                                    Separate by the Enter key.
+                                </span>
+                                <h3 className="text-xs uppercase font-medium mt-4">
+                                    Most Used
+                                </h3>
+                                {mostUsedTags?.map((tag, idx) => (
+                                    <button
+                                        key={idx}
+                                        className="text-xs text-blue-400 cursor-pointer underline mx-2"
+                                        onClick={() => handleTag(tag)}
+                                    >
+                                        {tag}
+                                    </button>
+                                ))}
+                            </AccordionItemPanel>
+                        </AccordionItem>
+                        <AccordionItem uuid="d">
+                            <AccordionItemHeading>
+                                <AccordionItemButton>
+                                    Featured Image
+                                </AccordionItemButton>
+                            </AccordionItemHeading>
+                            <AccordionItemPanel>
+                                <form
+                                    onSubmit={handleSubmit(handleFeaturedImage)}
+                                    className=""
+                                >
+                                    {selectedImage ? (
+                                        <div className="relative w-full h-full block">
+                                            <div className="absolute bottom-4 right-0 text-black duration-500 transition-all w-full flex justify-evenly gap-3">
+                                                <label
+                                                    className="px-6 border py-2 bg-gray-300 inline-block rounded cursor-pointer text-sm bg-opacity-80"
+                                                    htmlFor="imageInput"
+                                                >
+                                                    Replace
+                                                </label>
+                                                <button
+                                                    onClick={handleRemoveImage}
+                                                    className="px-6 border py-2 bg-gray-300 inline-block rounded text-sm bg-opacity-80"
+                                                >
+                                                    Remove
+                                                </button>
+                                            </div>
+                                            <Image
+                                                width={300}
+                                                height={100}
+                                                src={selectedImage}
+                                                alt="Image Preview"
+                                                className="w-full border h-[200px] object-cover rounded-md"
+                                            />
+                                        </div>
+                                    ) : (
+                                        <label
+                                            htmlFor="imageInput"
+                                            className="w-full h-32 rounded cursor-pointer bg-slate-200 flex items-center justify-center"
+                                        >
+                                            <span className="text-sm">
+                                                Set Featured Image
+                                            </span>
+                                        </label>
+                                    )}
+                                    <input
+                                        type="file"
+                                        id="imageInput"
+                                        accept="image/*"
+                                        className="hidden"
+                                        {...register("image")}
+                                    />
                                 </form>
                             </AccordionItemPanel>
                         </AccordionItem>
