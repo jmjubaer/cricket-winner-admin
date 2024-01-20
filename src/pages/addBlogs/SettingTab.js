@@ -360,6 +360,136 @@ const SettingTab = ({
                                 </form>
                             </AccordionItemPanel>
                         </AccordionItem>
+                        <AccordionItem uuid="e">
+                            <AccordionItemHeading>
+                                <AccordionItemButton>
+                                    Featured Image
+                                </AccordionItemButton>
+                            </AccordionItemHeading>
+                            <AccordionItemPanel>
+                                <form
+                                    onSubmit={handleSubmit(handleFeaturedImage)}
+                                    className=""
+                                >
+                                    {selectedImage ? (
+                                        <div className="relative w-full h-full block">
+                                            <div className="absolute bottom-4 right-0 text-black duration-500 transition-all w-full flex justify-evenly gap-3">
+                                                <label
+                                                    className="px-6 border py-2 bg-gray-300 inline-block rounded cursor-pointer text-sm bg-opacity-80"
+                                                    htmlFor="imageInput"
+                                                >
+                                                    Replace
+                                                </label>
+                                                <button
+                                                    onClick={handleRemoveImage}
+                                                    className="px-6 border py-2 bg-gray-300 inline-block rounded text-sm bg-opacity-80"
+                                                >
+                                                    Remove
+                                                </button>
+                                            </div>
+                                            <Image
+                                                width={300}
+                                                height={100}
+                                                src={selectedImage}
+                                                alt="Image Preview"
+                                                className="w-full border h-[200px] object-cover rounded-md"
+                                            />
+                                        </div>
+                                    ) : (
+                                        <label
+                                            htmlFor="imageInput"
+                                            className="w-full h-32 rounded cursor-pointer bg-slate-200 flex items-center justify-center"
+                                        >
+                                            <span className="text-sm">
+                                                Set Featured Image
+                                            </span>
+                                        </label>
+                                    )}
+                                    <input
+                                        type="file"
+                                        id="imageInput"
+                                        accept="image/*"
+                                        className="hidden"
+                                        {...register("image")}
+                                    />
+                                </form>
+                            </AccordionItemPanel>
+                        </AccordionItem>
+                        <AccordionItem uuid="f">
+                            <AccordionItemHeading>
+                                <AccordionItemButton>
+                                    Excerpt
+                                </AccordionItemButton>
+                            </AccordionItemHeading>
+                            <AccordionItemPanel>
+                                <label htmlFor="excerpt" className="text-xs">
+                                    WRITE AN EXCERPT (OPTIONAL)
+                                </label>
+                                <form
+                                    onSubmit={handleSubmit(handleFeaturedImage)}
+                                    className=""
+                                >
+                                    <textarea
+                                        {...register("excerpt")}
+                                        id="excerpt"
+                                        className="border border-black rounded mt-3 p-2 h-32 w-full outline-none"
+                                    ></textarea>
+                                </form>
+                                <a
+                                    href="#"
+                                    target="_blank"
+                                    className="text-blue-500 underline text-xs"
+                                >
+                                    Learn more about manual excerpts
+                                </a>
+                            </AccordionItemPanel>
+                        </AccordionItem>
+                        <AccordionItem uuid="g">
+                            <AccordionItemHeading>
+                                <AccordionItemButton>
+                                    Discussion
+                                </AccordionItemButton>
+                            </AccordionItemHeading>
+                            <AccordionItemPanel>
+                                <form
+                                    onSubmit={handleSubmit(handleFeaturedImage)}
+                                    className=""
+                                >
+                                    <div className="flex gap-3 my-5 items-center">
+                                        <input
+                                            type="checkbox"
+                                            name="comments"
+                                            id="comments"
+                                            {...register("comments")}
+                                            value={"Allow comment"}
+                                            className="w-5 h-5 cursor-pointer"
+                                        />
+                                        <label
+                                            htmlFor="comments"
+                                            className="text-sm cursor-pointer"
+                                        >
+                                            Allow comment
+                                        </label>
+                                    </div>
+                                    <div className="flex gap-3 my-5 items-center">
+                                        <input
+                                            type="checkbox"
+                                            name="pingbacksTrackbacks"
+                                            id="pingbacksTrackbacks"
+                                            {...register("pingbacksTrackbacks")}
+                                            value={"Allow Allow pingbacks & trackbacks"}
+                                            className="w-5 h-5 cursor-pointer"
+                                        />
+                                        <label
+                                            htmlFor="pingbacksTrackbacks"
+                                            className="text-sm cursor-pointer"
+                                        >
+                                            Allow Allow pingbacks & trackbacks
+                                        </label>
+                                    </div>
+                                </form>
+                            </AccordionItemPanel>
+                        </AccordionItem>
                     </Accordion>
                 </div>
             </TabPanel>

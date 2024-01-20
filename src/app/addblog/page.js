@@ -135,10 +135,13 @@ import overview from "@/assets/heading.svg";
 import { IoMdLaptop } from "react-icons/io";
 
 import SettingTab from "@/pages/addBlogs/SettingTab";
+import OptionsTab from "@/pages/addBlogs/OptionsTab";
 const AddBlogPage = () => {
     const [toolDrawer, setToolDrawer] = useState(false);
     const [overviewDrawer, setOverviewDrawer] = useState(false);
     const [settingDrawer, setSettingDrawer] = useState(true);
+    const [optionsDrawer, setOptionsDrawer] = useState(false);
+    const [topToolbar, setTopToolbar] = useState(false);
     const {
         register,
         handleSubmit,
@@ -157,6 +160,11 @@ const AddBlogPage = () => {
             setSettingDrawer(false);
         } else if (action == "setting") {
             setSettingDrawer(!settingDrawer);
+            setOverviewDrawer(false);
+            setToolDrawer(false);
+        } else if (action == "options") {
+            setOptionsDrawer(!optionsDrawer);
+            setSettingDrawer(false);
             setOverviewDrawer(false);
             setToolDrawer(false);
         } else {
@@ -187,12 +195,6 @@ const AddBlogPage = () => {
     const handleToolSearch = (e) => {
         console.log(e.target.value);
     };
-    const all = () =>{
-        handleFeaturedImage()
-        handleCategory()
-        handleSummery()
-        console.log(tags);
-    }
     return (
         <section className="max-w-[1440px] mx-auto">
             <nav className="flex bg-white justify-between items-center border-b border fixed top-0  w-full">
@@ -264,7 +266,10 @@ const AddBlogPage = () => {
                         </button>
                     </li>
                     <li>
-                        <button className="cursor-pointer">
+                        <button
+                            onClick={() => handleDrawer("options")}
+                            className="cursor-pointer"
+                        >
                             <BsThreeDotsVertical className="text-2xl mt-1" />
                         </button>
                     </li>
@@ -1083,7 +1088,10 @@ const AddBlogPage = () => {
                 <form
                     onSubmit={handleSubmit(handlePublish)}
                     className={`my-16 mx-auto ${
-                        toolDrawer || overviewDrawer || settingDrawer
+                        toolDrawer ||
+                        overviewDrawer ||
+                        settingDrawer ||
+                        optionsDrawer
                             ? "col-span-5 w-4/5"
                             : "col-span-7 w-3/5"
                     }`}
@@ -1100,7 +1108,6 @@ const AddBlogPage = () => {
                         className="text-lg placeholder:text-slate-600 outline-none my-5"
                         placeholder="Type / to choose a block"
                     />
-                    <button onClick={all} type="submit" className="primary_btn">alll</button>
                 </form>
                 {/* Setting Drawer */}
                 {settingDrawer && (
@@ -1112,6 +1119,15 @@ const AddBlogPage = () => {
                             setSelected={setTags}
                             handleFeaturedImage={handleFeaturedImage}
                         ></SettingTab>
+                    </div>
+                )}
+                {/* Options Drawer */}
+                {optionsDrawer && (
+                    <div className="border-l col-span-2 h-[calc(100vh-110px)] overflow-auto">
+                        <OptionsTab
+                            topToolbar={topToolbar}
+                            setTopToolbar={setTopToolbar}
+                        ></OptionsTab>
                     </div>
                 )}
             </div>
