@@ -26,7 +26,6 @@ const SettingTab = ({
         watch,
         register,
         setValue,
-        handleSubmit,
         formState: { errors },
     } = useForm();
 
@@ -128,7 +127,7 @@ const SettingTab = ({
             <TabPanel className="">
                 <div className=" h-[calc(100vh-110px)] overflow-auto">
                     <Accordion
-                        preExpanded={["a", "b", "c", "d"]}
+                        preExpanded={["a", "b", "c", "d","f"]}
                         allowZeroExpanded
                         allowMultipleExpanded
                     >
@@ -139,10 +138,7 @@ const SettingTab = ({
                                 </AccordionItemButton>
                             </AccordionItemHeading>
                             <AccordionItemPanel>
-                                <form
-                                    onSubmit={handleSubmit(handleSummery)}
-                                    className="mb-4 mt-2"
-                                >
+                                <div className="mb-4 mt-2">
                                     <div className="grid my-2 grid-cols-3 text-sm items-center">
                                         <label>Visibility</label>
                                         <div className="col-span-2">
@@ -229,7 +225,7 @@ const SettingTab = ({
                                             )}
                                         </select>
                                     </div>
-                                </form>
+                                </div>
                             </AccordionItemPanel>
                         </AccordionItem>
                         <AccordionItem uuid="b">
@@ -239,11 +235,8 @@ const SettingTab = ({
                                 </AccordionItemButton>
                             </AccordionItemHeading>
                             <AccordionItemPanel>
-                                <form
-                                    onSubmit={handleSubmit(handleCategory)}
-                                    className="mb-4 mt-2"
-                                >
-                                    {categories.map(
+                                <div className="mb-4 mt-2">
+                                    {categories?.map(
                                         ({ value, label, id }, idx) => (
                                             <div
                                                 key={id}
@@ -256,6 +249,7 @@ const SettingTab = ({
                                                     {...register(label)}
                                                     value={value}
                                                     className="w-5 h-5 cursor-pointer"
+                                                    y7
                                                 />
                                                 <label
                                                     htmlFor={id}
@@ -271,7 +265,7 @@ const SettingTab = ({
                                             Add New Category
                                         </button>
                                     </div>
-                                </form>
+                                </div>
                             </AccordionItemPanel>
                         </AccordionItem>
                         <AccordionItem uuid="c">
@@ -312,10 +306,7 @@ const SettingTab = ({
                                 </AccordionItemButton>
                             </AccordionItemHeading>
                             <AccordionItemPanel>
-                                <form
-                                    onSubmit={handleSubmit(handleFeaturedImage)}
-                                    className=""
-                                >
+                                <div className="">
                                     {selectedImage ? (
                                         <div className="relative w-full h-full block">
                                             <div className="absolute bottom-4 right-0 text-black duration-500 transition-all w-full flex justify-evenly gap-3">
@@ -357,65 +348,10 @@ const SettingTab = ({
                                         className="hidden"
                                         {...register("image")}
                                     />
-                                </form>
+                                </div>
                             </AccordionItemPanel>
                         </AccordionItem>
                         <AccordionItem uuid="e">
-                            <AccordionItemHeading>
-                                <AccordionItemButton>
-                                    Featured Image
-                                </AccordionItemButton>
-                            </AccordionItemHeading>
-                            <AccordionItemPanel>
-                                <form
-                                    onSubmit={handleSubmit(handleFeaturedImage)}
-                                    className=""
-                                >
-                                    {selectedImage ? (
-                                        <div className="relative w-full h-full block">
-                                            <div className="absolute bottom-4 right-0 text-black duration-500 transition-all w-full flex justify-evenly gap-3">
-                                                <label
-                                                    className="px-6 border py-2 bg-gray-300 inline-block rounded cursor-pointer text-sm bg-opacity-80"
-                                                    htmlFor="imageInput"
-                                                >
-                                                    Replace
-                                                </label>
-                                                <button
-                                                    onClick={handleRemoveImage}
-                                                    className="px-6 border py-2 bg-gray-300 inline-block rounded text-sm bg-opacity-80"
-                                                >
-                                                    Remove
-                                                </button>
-                                            </div>
-                                            <Image
-                                                width={300}
-                                                height={100}
-                                                src={selectedImage}
-                                                alt="Image Preview"
-                                                className="w-full border h-[200px] object-cover rounded-md"
-                                            />
-                                        </div>
-                                    ) : (
-                                        <label
-                                            htmlFor="imageInput"
-                                            className="w-full h-32 rounded cursor-pointer bg-slate-200 flex items-center justify-center"
-                                        >
-                                            <span className="text-sm">
-                                                Set Featured Image
-                                            </span>
-                                        </label>
-                                    )}
-                                    <input
-                                        type="file"
-                                        id="imageInput"
-                                        accept="image/*"
-                                        className="hidden"
-                                        {...register("image")}
-                                    />
-                                </form>
-                            </AccordionItemPanel>
-                        </AccordionItem>
-                        <AccordionItem uuid="f">
                             <AccordionItemHeading>
                                 <AccordionItemButton>
                                     Excerpt
@@ -425,16 +361,13 @@ const SettingTab = ({
                                 <label htmlFor="excerpt" className="text-xs">
                                     WRITE AN EXCERPT (OPTIONAL)
                                 </label>
-                                <form
-                                    onSubmit={handleSubmit(handleFeaturedImage)}
-                                    className=""
-                                >
+                                <div className="">
                                     <textarea
                                         {...register("excerpt")}
                                         id="excerpt"
                                         className="border border-black rounded mt-3 p-2 h-32 w-full outline-none"
                                     ></textarea>
-                                </form>
+                                </div>
                                 <a
                                     href="#"
                                     target="_blank"
@@ -444,17 +377,14 @@ const SettingTab = ({
                                 </a>
                             </AccordionItemPanel>
                         </AccordionItem>
-                        <AccordionItem uuid="g">
+                        <AccordionItem uuid="f">
                             <AccordionItemHeading>
                                 <AccordionItemButton>
                                     Discussion
                                 </AccordionItemButton>
                             </AccordionItemHeading>
                             <AccordionItemPanel>
-                                <form
-                                    onSubmit={handleSubmit(handleFeaturedImage)}
-                                    className=""
-                                >
+                                <div className="">
                                     <div className="flex gap-3 my-5 items-center">
                                         <input
                                             type="checkbox"
@@ -477,7 +407,9 @@ const SettingTab = ({
                                             name="pingbacksTrackbacks"
                                             id="pingbacksTrackbacks"
                                             {...register("pingbacksTrackbacks")}
-                                            value={"Allow Allow pingbacks & trackbacks"}
+                                            value={
+                                                "Allow Allow pingbacks & trackbacks"
+                                            }
                                             className="w-5 h-5 cursor-pointer"
                                         />
                                         <label
@@ -487,7 +419,7 @@ const SettingTab = ({
                                             Allow Allow pingbacks & trackbacks
                                         </label>
                                     </div>
-                                </form>
+                                </div>
                             </AccordionItemPanel>
                         </AccordionItem>
                     </Accordion>
