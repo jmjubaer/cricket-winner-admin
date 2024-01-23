@@ -42,12 +42,23 @@ import {
     FaWpforms,
     FaYoutube,
 } from "react-icons/fa6";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaPlusSquare, FaRegPlusSquare } from "react-icons/fa";
 import { RiCornerUpLeftLine, RiCornerUpRightLine } from "react-icons/ri";
 
 import { GoSidebarExpand } from "react-icons/go";
-import { BsListNested, BsThreeDotsVertical } from "react-icons/bs";
-import { IoClose } from "react-icons/io5";
+import {
+    BsImageAlt,
+    BsListNested,
+    BsParagraph,
+    BsThreeDotsVertical,
+} from "react-icons/bs";
+import {
+    IoBookmarkSharp,
+    IoClose,
+    IoCodeSlashSharp,
+    IoLocationOutline,
+    IoSearch,
+} from "react-icons/io5";
 
 // Image =================
 import fav from "@/assets/favicon.png";
@@ -58,6 +69,10 @@ import SettingTab from "@/pages/addBlogs/SettingTab";
 import OptionsTab from "@/pages/addBlogs/OptionsTab";
 import BlocksTab from "@/pages/addBlogs/BlocksTab";
 import { TagsInput } from "react-tag-input-component";
+import Modal from "@/pages/addBlogs/Modal";
+import { MdMenuOpen } from "react-icons/md";
+import { LuListVideo } from "react-icons/lu";
+import { PiListPlus } from "react-icons/pi";
 const AddBlogPage = () => {
     const [toolDrawer, setToolDrawer] = useState(false);
     const [overviewDrawer, setOverviewDrawer] = useState(false);
@@ -66,6 +81,7 @@ const AddBlogPage = () => {
     const [topToolbar, setTopToolbar] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
     const [tags, setTags] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
 
     const {
         watch,
@@ -284,7 +300,7 @@ const AddBlogPage = () => {
                     {/* Tool bar */}
                     {toolDrawer && (
                         <div className="border-r col-span-2">
-                            <div className="overflow-hidden m-4">
+                            <div className="overflow-hidden m-4 relative">
                                 <input
                                     onChange={handleToolSearch}
                                     autoFocus
@@ -294,6 +310,9 @@ const AddBlogPage = () => {
                                     placeholder="Search"
                                     className="bg-slate-200 focus:bg-transparent p-3 outline-2 w-full outline-blue-500"
                                 />
+                                <span className="absolute top-1/2 text-xl -translate-y-1/2 right-4">
+                                    <IoSearch />
+                                </span>
                             </div>
                             <Tabs>
                                 <div className="flex">
@@ -455,7 +474,7 @@ const AddBlogPage = () => {
                         </div>
                     )}
                     <div
-                        className={`my-16 mx-auto ${
+                        className={`my-16 mx-auto h-fit relative ${
                             toolDrawer ||
                             overviewDrawer ||
                             settingDrawer ||
@@ -476,7 +495,59 @@ const AddBlogPage = () => {
                             className="text-lg placeholder:text-slate-600 outline-none my-5"
                             placeholder="Type / to choose a block"
                         />
+                        <button
+                            onClick={() => setIsOpen(true)}
+                            className="text-3xl cursor-pointer hover:text-blue-500 absolute right-0 bottom-5"
+                        >
+                            <FaRegPlusSquare />
+                        </button>
                     </div>
+                    {/* Modal */}
+                    <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+                        <div className="m-3 relative">
+                            <input
+                                // onChange={handleToolSearch}
+                                autoFocus
+                                type="search"
+                                name="toolSearchText"
+                                id=""
+                                placeholder="Search"
+                                className="bg-slate-200 focus:bg-transparent p-3 outline-2 w-full outline-blue-500"
+                            />
+                            <span className="absolute top-1/2 text-xl -translate-y-1/2 right-4">
+                                <IoSearch />
+                            </span>
+                        </div>
+                        <div className="grid grid-cols-3 m-3">
+                            <button className="flex flex-col items-center justify-center gap-3 hover:bg-[#3858e9] cursor-grab   hover:bg-opacity-10 p-5 rounded-md hover:text-[#3858e9]">
+                                <BsParagraph className="text-xl" />
+                                <span className="text-sm">Paragraph</span>
+                            </button>
+                            <button className="flex flex-col items-center justify-center gap-3 hover:bg-[#3858e9] cursor-grab  hover:bg-opacity-10 p-5 rounded-md hover:text-[#3858e9]">
+                                <IoBookmarkSharp className="text-xl" />
+                                <span className="text-sm">Heading</span>
+                            </button>
+                            <button className="flex flex-col items-center justify-center gap-3 hover:bg-[#3858e9] cursor-grab  hover:bg-opacity-10 p-5 rounded-md hover:text-[#3858e9]">
+                                <PiListPlus className="text-xl" />
+                                <span className="text-sm">List</span>
+                            </button>
+                            <button className="flex flex-col items-center justify-center gap-3 hover:bg-[#3858e9] cursor-grab  hover:bg-opacity-10 p-5 rounded-md hover:text-[#3858e9]">
+                                <FaQuoteRight className="text-xl" />
+                                <span className="text-sm">Quote</span>
+                            </button>
+                            <button className="flex flex-col items-center justify-center gap-3 hover:bg-[#3858e9] cursor-grab  hover:bg-opacity-10 p-5 rounded-md hover:text-[#3858e9]">
+                                <IoCodeSlashSharp className="text-xl" />
+                                <span className="text-sm">Code</span>
+                            </button>
+                            <button className="flex flex-col items-center justify-center gap-3 hover:bg-[#3858e9] cursor-grab  hover:bg-opacity-10 p-5 rounded-md hover:text-[#3858e9]">
+                                <LuListVideo className="text-xl" />
+                                <span className="text-sm">Details</span>
+                            </button>
+                        </div>
+                        <button className="w-full rounded-b p-3 bg-[#333] text-white text-sm mt-2">
+                            Browse all
+                        </button>
+                    </Modal>
                     {/* Setting Drawer */}
                     {settingDrawer && (
                         <div className="border-l col-span-2 ">
