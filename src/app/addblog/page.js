@@ -205,6 +205,11 @@ const AddBlogPage = () => {
     const handleToolSearch = (e) => {
         console.log(e.target.value);
     };
+
+    const handleAllTools = () => {
+        setIsOpen(false)
+        setToolDrawer(true)
+    }
     return (
         <section className="max-w-[1440px] mx-auto">
             <form onSubmit={handleSubmit(handlePublish)}>
@@ -544,7 +549,7 @@ const AddBlogPage = () => {
                                 <span className="text-sm">Details</span>
                             </button>
                         </div>
-                        <button className="w-full rounded-b p-3 bg-[#333] text-white text-sm mt-2">
+                        <button onClick={handleAllTools} className="w-full rounded-b p-3 bg-[#333] text-white text-sm mt-2">
                             Browse all
                         </button>
                     </Modal>
