@@ -73,6 +73,7 @@ import Modal from "@/pages/addBlogs/Modal";
 import { MdMenuOpen } from "react-icons/md";
 import { LuListVideo } from "react-icons/lu";
 import { PiListPlus } from "react-icons/pi";
+import SettingBlockTab from "@/pages/addBlogs/SettingBlockTab";
 const AddBlogPage = () => {
     const [toolDrawer, setToolDrawer] = useState(false);
     const [overviewDrawer, setOverviewDrawer] = useState(false);
@@ -207,9 +208,9 @@ const AddBlogPage = () => {
     };
 
     const handleAllTools = () => {
-        setIsOpen(false)
-        setToolDrawer(true)
-    }
+        setIsOpen(false);
+        setToolDrawer(true);
+    };
     return (
         <section className="max-w-[1440px] mx-auto">
             <form onSubmit={handleSubmit(handlePublish)}>
@@ -220,10 +221,12 @@ const AddBlogPage = () => {
                             alt="logo image"
                             height={60}
                             width={60}
+                            title="Logo"
                         />
                         <ul className="flex items-center gap-5 mx-5">
                             <li>
                                 <button
+                                    title="Toggle block inserter"
                                     onClick={() => handleDrawer("toolbar")}
                                     className={`p-2 text-white cursor-pointer duration-500 ${
                                         toolDrawer ? "bg-black" : "bg-[#FFC305]"
@@ -233,22 +236,32 @@ const AddBlogPage = () => {
                                 </button>
                             </li>
                             <li>
-                                <button className="text-xl cursor-pointer">
+                                <button
+                                    title="Tools"
+                                    className="text-xl cursor-pointer"
+                                >
                                     <FaEdit />
                                 </button>
                             </li>
                             <li>
-                                <button className="text-2xl cursor-pointer">
+                                <button
+                                    title="Undo"
+                                    className="text-2xl cursor-pointer"
+                                >
                                     <RiCornerUpLeftLine />
                                 </button>
                             </li>
                             <li>
-                                <button className="text-2xl cursor-pointer">
+                                <button
+                                    title="Redo"
+                                    className="text-2xl cursor-pointer"
+                                >
                                     <RiCornerUpRightLine />
                                 </button>
                             </li>
                             <li>
                                 <button
+                                    title="Document overview"
                                     onClick={() => handleDrawer("overview")}
                                     className={`text-xl p-2 rounded-md cursor-pointer ${
                                         overviewDrawer
@@ -263,12 +276,18 @@ const AddBlogPage = () => {
                     </div>
                     <ul className="flex gap-5 mx-5 items-center">
                         <li>
-                            <button className="text-sm text-gray-400 cursor-pointer">
+                            <button
+                                title="Save draft"
+                                className="text-sm text-gray-400 cursor-pointer"
+                            >
                                 Save draft
                             </button>
                         </li>
                         <li>
-                            <button className="cursor-pointer text-gray-400">
+                            <button
+                                title="Preview"
+                                className="cursor-pointer text-gray-400"
+                            >
                                 <IoMdLaptop className="text-2xl mt-1" />
                             </button>
                         </li>
@@ -283,6 +302,7 @@ const AddBlogPage = () => {
 
                         <li>
                             <button
+                                title="Setting"
                                 onClick={() => handleDrawer("setting")}
                                 className={`text-xl p-1 pt-0 rounded-md cursor-pointer ${
                                     settingDrawer ? "bg-black text-white" : ""
@@ -293,6 +313,7 @@ const AddBlogPage = () => {
                         </li>
                         <li>
                             <button
+                                title="Options"
                                 onClick={() => handleDrawer("options")}
                                 className="cursor-pointer"
                             >
@@ -549,7 +570,10 @@ const AddBlogPage = () => {
                                 <span className="text-sm">Details</span>
                             </button>
                         </div>
-                        <button onClick={handleAllTools} className="w-full rounded-b p-3 bg-[#333] text-white text-sm mt-2">
+                        <button
+                            onClick={handleAllTools}
+                            className="w-full rounded-b p-3 bg-[#333] text-white text-sm mt-2"
+                        >
                             Browse all
                         </button>
                     </Modal>
@@ -943,7 +967,9 @@ const AddBlogPage = () => {
                                 </TabPanel>
                                 {/*=============== block Tab ================ */}
                                 <TabPanel className="">
-                                    <div className="p-3 overflow-auto text-gray-500"></div>
+                                    <div className="overflow-auto  h-[calc(100vh-110px)] ">
+                                        <SettingBlockTab></SettingBlockTab>
+                                    </div>
                                 </TabPanel>
                             </Tabs>
                         </div>
