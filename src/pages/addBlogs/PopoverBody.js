@@ -11,11 +11,11 @@ import paddingLeftImg from "@/assets/paddingleft.svg";
 import paddingRightImg from "@/assets/paddingright.svg";
 const PopoverBody = ({ customBtn, children }) => {
     return (
-        <div className="z-20">
+        <div className="">
             <Popover className="relative">
                 {({ open }) => (
                     <>
-                        <Popover.Button className="outline-none -z-10">
+                        <Popover.Button className="outline-none z-10">
                             {customBtn == "plus" ? (
                                 <FaPlus className="" />
                             ) : customBtn == "padding" ? (
@@ -33,8 +33,8 @@ const PopoverBody = ({ customBtn, children }) => {
                             leaveFrom="opacity-100 translate-y-0"
                             leaveTo="opacity-0 translate-y-1"
                         >
-                            <Popover.Panel className="absolute right-0 top-7 w-64">
-                                <div className="overflow-hidden bg-white z-20 rounded-md shadow-lg ring-1 ring-black/5">
+                            <Popover.Panel className="absolute right-0 top-7 z-20 w-64">
+                                <div className="overflow-hidden bg-white  rounded-md shadow-lg ring-1 ring-black/5">
                                     {children}
                                 </div>
                             </Popover.Panel>
